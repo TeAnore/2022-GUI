@@ -34,7 +34,7 @@ WINDOW_WIDTH = 1280
 WINDOW_HEIGHT = 720
 WINDOW_TITLE = '6231_ChaplyginAO_GUI_Lab_3_Qt'
 DB_STATUS = 'Состояние подключения к БД: '
-DB = 'C:\\Users\\Elf\\Documents\\Study\\2022-GUI\\6231_ChaplyginAO_GUI_Lab_3_Qt\\GUI_LABS.db'
+DB = os.path.join(os.path.dirname(__file__), 'GUI_LABS.db')
 
 class T_LAB3(Base):
     __tablename__ = 'T_LAB3'
@@ -180,7 +180,7 @@ class MainWindow(QMainWindow):
         self.query2_combobox.setEnabled(True)
         self.query3_button.setEnabled(True)
         self.query4_button.setEnabled(True)
-        self.engine = create_engine(f'sqlite:///' + DB , echo=False)
+        self.engine = create_engine(f'sqlite:///' + DB , echo=False) 
         # Проверка существоания таблицы
         Base.metadata.create_all(self.engine)
         self.Session = sessionmaker(bind=self.engine)
